@@ -1,4 +1,4 @@
-package test.javacourse.tast2.util;
+package test.javacourse.task2.util;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
