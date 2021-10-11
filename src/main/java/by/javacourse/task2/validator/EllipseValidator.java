@@ -11,12 +11,12 @@ public interface EllipseValidator {
 
 	boolean canEllipseExist(double aX, double aY, double bX, double bY);
 
-	public boolean canEllipseExist(double... coordinates);
+	boolean canEllipseExist(double... coordinates);
 
 	boolean canEllipseExist(Point a, Point b);
 
-	public boolean canEllipseExist(String aX, String aY, String bX, String bY);
+	boolean canEllipseExist(String aX, String aY, String bX, String bY);
 
-	public boolean canEllipseExist(String... coordinates);
+	boolean canEllipseExist(String... coordinates);
 
 }

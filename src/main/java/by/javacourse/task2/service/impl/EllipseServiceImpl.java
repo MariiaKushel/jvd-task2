@@ -115,16 +115,16 @@ public class EllipseServiceImpl implements EllipseService {
 
 		int quarter = 0;
 
-		if (point.getX() >= 0 && point.getY() >= 0) {
+		if (point.getX() >= 0 && point.getY() > 0) {
 			quarter = 1;
 		}
-		if (point.getX() <= 0 && point.getY() > 0) {
+		if (point.getX() < 0 && point.getY() >= 0) {
 			quarter = 2;
 		}
-		if (point.getX() < 0 && point.getY() <= 0) {
+		if (point.getX() <= 0 && point.getY() < 0) {
 			quarter = 3;
 		}
-		if (point.getX() >= 0 && point.getY() < 0) {
+		if (point.getX() > 0 && point.getY() <= 0) {
 			quarter = 4;
 		}
 
