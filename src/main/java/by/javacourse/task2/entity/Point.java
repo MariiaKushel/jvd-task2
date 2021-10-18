@@ -23,9 +23,21 @@ public class Point implements Cloneable {
 		return x;
 	}
 
+	/*
+	 * public void setX(double x) { 
+	 * this.x = x; 
+	 * }
+	 */
+	
 	public double getY() {
 		return y;
 	}
+	
+	/*
+	 * public void setY(double y) { 
+	 * this.y = y; 
+	 * }
+	 */
 
 	@Override
 	public Point clone() {
@@ -64,10 +76,12 @@ public class Point implements Cloneable {
 	public String toString() {
 
 		return new StringBuilder()
-				.append("Point x=")
+				.append("[Point ")
+				.append("x = ")
 				.append(x)
-				.append(", y=")
+				.append("; y = ")
 				.append(y)
+				.append("]")
 				.toString();
 	}
 

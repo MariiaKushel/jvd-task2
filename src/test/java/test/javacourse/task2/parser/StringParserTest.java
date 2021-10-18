@@ -2,7 +2,6 @@ package test.javacourse.task2.parser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 import org.testng.Assert;
@@ -26,7 +25,7 @@ public class StringParserTest {
 	}
 
 	@Test
-	public void testParseListToCoordinates() throws CustomException {
+	public void testParseListToCoordinates() {
 		List<String> strings = new ArrayList<String>();
 		strings.add("");
 		strings.add("-8;5;9;-3");
@@ -52,17 +51,8 @@ public class StringParserTest {
 		Assert.assertTrue(flag);
 	}
 	
-	@Test (expectedExceptions = CustomException.class)
-	public void testParseListToCoordinatesException() throws CustomException {
-		List<String> strings = new ArrayList<String>();
-		strings.add("");
-		strings.add("-8;5;-8;3");
-
-		parser.parseListToCoordinates(strings);
-	}
-	
 	@Test
-	public void testParseListToPoints () throws CustomException {
+	public void testParseListToPoints () {
 		List<String> strings = new ArrayList<String>();
 		strings.add("");
 		strings.add("-8;5;9;-3");
@@ -88,20 +78,16 @@ public class StringParserTest {
 		Assert.assertTrue(flag);
 	}
 	
-	@Test (expectedExceptions = CustomException.class)
-	public void testParseListToPointsException() throws CustomException {
-		List<String> strings = new ArrayList<String>();
-		strings.add("");
-		strings.add("-8;5;-8;3");
-
-		parser.parseListToPoints(strings);
-	}
-
 	@DataProvider(name = "providerParseStringToCoordinates")
 	public Object[][] creatStringForCoordinates() {
 		return new Object[][] { 
 			{ "-8;5;9;-3", new double[] { -8, 5, 9, -3 } },
-			{ "-8.6;5.7;9.999;-3.1", new double[] { -8.6, 5.7, 9.999, -3.1 } }, };
+			{ "-8.6;5.7;9.999;-3.1", new double[] { -8.6, 5.7, 9.999, -3.1 } },
+			{ "-8;5;-8;3", new double[] {} }, 
+			{ "-8;5;-7;5", new double[] {}  }, 
+			{ "-8;-8;-8;-8", new double[] {}  }, 
+			{ "", new double[] {} },
+			};
 	}
 
 	@Test(dataProvider = "providerParseStringToCoordinates")
@@ -110,36 +96,21 @@ public class StringParserTest {
 		Assert.assertEquals(actual, expected);
 	}
 
-	@DataProvider(name = "providerParseStringException")
-	public Object[][] creatStringForCoordinatesException() {
-		return new Object[][] { 
-			{ "-8;5;-8;3" }, 
-			{ "-8;5;-7;5" }, 
-			{ "-8;-8;-8;-8" }, 
-			{ "" }, };
-	}
-
-	@Test(dataProvider = "providerParseStringException", expectedExceptions = CustomException.class)
-	public void testParseStringToCoordinatesException(String stringAsCoordinates) throws CustomException {
-		parser.parseStringToCoordinates(stringAsCoordinates);
-	}
-
 	@DataProvider(name = "providerStringParseToPoints")
 	public Object[][] creatStringForPoints() {
 		return new Object[][] { 
 			{ "-8;5;9;-3", new Point[] { new Point(-8, 5), new Point(9, -3) } },
-			{ "-8.6;5.7;9.999;-3.1", new Point[] { new Point(-8.6, 5.7), new Point(9.999, -3.1) } } };
+			{ "-8.6;5.7;9.999;-3.1", new Point[] { new Point(-8.6, 5.7), new Point(9.999, -3.1) } }, 
+			{ "-8;5;-8;3", new Point[] {} }, 
+			{ "-8;5;-7;5", new Point[] {}  }, 
+			{ "-8;-8;-8;-8", new Point[] {}  }, 
+			{ "", new Point[] {} } };
 	}
 
 	@Test(dataProvider = "providerStringParseToPoints")
 	public void testParseStringToPoints(String stringAsCoordinates, Point[] expected) throws CustomException {
 		Point[] actual = parser.parseStringToPoints(stringAsCoordinates);
 		Assert.assertEquals(actual, expected);
-	}
-
-	@Test(dataProvider = "providerParseStringException", expectedExceptions = CustomException.class)
-	public void testParseStringToPointsExseption(String stringAsCoordinates) throws CustomException {
-		parser.parseStringToPoints(stringAsCoordinates);
 	}
 
 	@AfterMethod

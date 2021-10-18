@@ -6,6 +6,7 @@ public interface EllipseValidator {
 
 	static final String STRING_AS_COORDINATES_REGEX = "(-?\\d+(\\.\\d+)?;){4}";
 	static final int NUMBER_OF_COORDINATES = 4;
+	static final int NUMBER_OF_POINTS = 2;
 
 	boolean validateString(String stringAsCoordinates);
 

@@ -36,7 +36,7 @@ public class CustomFileReaderImpl implements CustomFileReader {
 			EllipseValidator validator = EllipseValidatorImpl.getInstance();
 
 			lines =  streamFromFile
-					.filter(elem -> validator.validateString(elem))
+					.filter(s -> validator.validateString(s))
 					.collect(Collectors.toList());
 			
 			logger.info("End reading file " + pathToFile);

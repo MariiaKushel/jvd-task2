@@ -1,12 +1,21 @@
 package by.javacourse.task2.entity;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import by.javacourse.task2.observer.EllipseEvent;
+import by.javacourse.task2.observer.Observable;
+import by.javacourse.task2.observer.EllipseObserver;
 import by.javacourse.task2.util.GeneratorId;
 
-public class Ellipse {
+public class Ellipse implements Observable{
 
+	static Logger logger = LogManager.getLogger();
+	
 	private final long ellipseId;
 	private Point pointA;
 	private Point pointB;
+	private EllipseObserver observer;
 
 	public Ellipse(Point pointA, Point pointB) {
 		this.ellipseId = GeneratorId.generete();
@@ -20,6 +29,7 @@ public class Ellipse {
 
 	public void setPointA(Point pointA) {
 		this.pointA = pointA.clone();
+		notifyObserver();
 	}
 
 	public Point getPointB() {
@@ -28,6 +38,7 @@ public class Ellipse {
 
 	public void setPointB(Point pointB) {
 		this.pointB = pointB.clone();
+		notifyObserver();
 	}
 
 	public long getEllipseId() {
@@ -72,13 +83,37 @@ public class Ellipse {
 	public String toString() {
 
 		return new StringBuilder()
-				.append("Ellipse ellipseId=")
+				.append("[Ellipse ")
+				.append("ellipseId = ")
 				.append(ellipseId)
-				.append(", pointA=")
+				.append("; pointA = ")
 				.append(pointA)
-				.append(", pointB=")
+				.append("; pointB = ")
 				.append(pointB)
+				.append("]")
 				.toString();
 	}
 
+	@Override
+	public void attach(EllipseObserver observer) {
+		this.observer = observer;
+	}
+
+	@Override
+	public void detach() {
+		this.observer = null;
+	}
+
+	@Override
+	public void notifyObserver() {
+		if (observer == null) {
+			logger.info("Observer is null");
+			return;
+		}
+		
+		EllipseEvent event = new EllipseEvent (this);
+		observer.updateParamrters(event);
+	}
+
+	
 }
