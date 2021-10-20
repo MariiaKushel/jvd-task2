@@ -7,8 +7,6 @@ import by.javacourse.task2.service.impl.EllipseServiceImpl;
 
 public class SquareRangeSpecificationImpl implements Specification {
 
-	private EllipseService service = new EllipseServiceImpl();
-	
 	private double squareFrom;
 	private double squareTo;
 
@@ -19,10 +17,9 @@ public class SquareRangeSpecificationImpl implements Specification {
 
 	@Override
 	public boolean specify(Ellipse ellipse) {
-		
+		EllipseService service = new EllipseServiceImpl();
 		double square = service.findSquare(ellipse);
-		
-		return square >= squareFrom && square <= squareTo;
+		return Double.compare(square, squareFrom) >= 0 && Double.compare(square, squareTo) <= 0;
 	}
 
 }

@@ -11,25 +11,25 @@ import by.javacourse.task2.service.impl.EllipseServiceImpl;
 import by.javacourse.task2.warehouse.EllipseParameters;
 import by.javacourse.task2.warehouse.EllipseWarehouse;
 
-public class EllipseObserverImpl implements EllipseObserver{
+public class EllipseObserverImpl implements EllipseObserver {
 
 	static Logger logger = LogManager.getLogger();
-	
+
 	@Override
 	public void updateParamrters(EllipseEvent event) {
-		
+
 		EllipseWarehouse warehouse = EllipseWarehouse.getInstance();
 		EllipseService service = new EllipseServiceImpl();
 		Ellipse ellipse = event.getSource();
-		
+
 		double square = service.findSquare(ellipse);
 		double perimeter = service.findPerimeter(ellipse);
-		
-		EllipseParameters param = new EllipseParameters (square, perimeter);
-		
-		warehouse.putParameters(ellipse.getEllipseId(), param);
-		
-		logger.info("Parameters " + param + " for id " + ellipse.getEllipseId() + " have been updated.");
+
+		EllipseParameters param = new EllipseParameters(square, perimeter);
+
+		logger.info(warehouse.putParameters(ellipse.getEllipseId(), param)
+				? "Parameters " + param + " for id " + ellipse.getEllipseId() + " have been updated."
+				: "Id " + ellipse.getEllipseId() + " was not found.");
 	}
 
 }

@@ -19,25 +19,25 @@ public class Ellipse implements Observable{
 
 	public Ellipse(Point pointA, Point pointB) {
 		this.ellipseId = GeneratorId.generete();
-		this.pointA = pointA.clone();
-		this.pointB = pointB.clone();
+		this.pointA = pointA;
+		this.pointB = pointB;
 	}
 
 	public Point getPointA() {
-		return pointA.clone();
+		return pointA;
 	}
 
 	public void setPointA(Point pointA) {
-		this.pointA = pointA.clone();
+		this.pointA = pointA;
 		notifyObserver();
 	}
 
 	public Point getPointB() {
-		return pointB.clone();
+		return pointB;
 	}
 
 	public void setPointB(Point pointB) {
-		this.pointB = pointB.clone();
+		this.pointB = pointB;
 		notifyObserver();
 	}
 

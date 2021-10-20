@@ -13,8 +13,7 @@ public class IdSpecificationImpl implements Specification {
 
 	@Override
 	public boolean specify(Ellipse ellipse) {
-		boolean result = ellipse.getEllipseId() == neededId;
-		return result;
+		return ellipse.getEllipseId() == neededId;
 	}
 
 }

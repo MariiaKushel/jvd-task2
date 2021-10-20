@@ -51,7 +51,7 @@ public class EllipseValidatorImpl implements EllipseValidator {
 	@Override
 	public boolean canEllipseExist(Point a, Point b) {
 
-		return canEllipseExist(a.getX(), a.getY(), b.getX(), b.getY());
+		return canEllipseExist(a.x(), a.y(), b.x(), b.y());
 	}
 
 	@Override

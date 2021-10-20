@@ -38,17 +38,9 @@ public class StringParserTest {
 		expected.add(new double[] { -8, 5, 9, -3 });
 		expected.add(new double[] { -8.6, 5.7, 9.999, -3.1 });
 
-		boolean flag = true;
+		boolean condition = Arrays.deepEquals(actual.toArray(), expected.toArray());
 		
-		for(int i = 0; i <actual.size(); i++) {
-			double [] arr1 = actual.get(i);
-			double [] arr2 = expected.get(i);
-			if (!Arrays.equals(arr1, arr2)) {
-				flag = false;
-			}
-		}
-		
-		Assert.assertTrue(flag);
+		Assert.assertTrue(condition);
 	}
 	
 	@Test
@@ -65,17 +57,9 @@ public class StringParserTest {
 		expected.add(new Point[] {new Point( -8, 5 ), new Point ( 9, -3 )});
 		expected.add(new Point[] {new Point( -8.6, 5.7 ), new Point ( 9.999, -3.1 ) });
 		
-		boolean flag = true;
+		boolean condition = Arrays.deepEquals(actual.toArray(), expected.toArray());
 		
-		for(int i = 0; i <actual.size(); i++) {
-			Point [] arr1 = actual.get(i);
-			Point [] arr2 = expected.get(i);
-			if (!Arrays.equals(arr1, arr2)) {
-				flag = false;
-			}
-		}
-		
-		Assert.assertTrue(flag);
+		Assert.assertTrue(condition);
 	}
 	
 	@DataProvider(name = "providerParseStringToCoordinates")

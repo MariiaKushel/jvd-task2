@@ -16,33 +16,32 @@ import by.javacourse.task2.repository.impl.SquareMoreThanSpecificationImpl;
 import by.javacourse.task2.repository.impl.SquareRangeSpecificationImpl;
 
 public class SpecificationTest {
-	
+
 	private Ellipse ellipse;
-	
+
 	@BeforeClass
-	public void initialize () {
-		ellipse = new Ellipse(new Point (2, 5), new Point (10,13));
+	public void initialize() {
+		ellipse = new Ellipse(new Point(2, 5), new Point(10, 13));
 	}
-	
-	@DataProvider (name = "providerSpecification")
-	public Object[][] createdata(){
-		return new Object [][] {
-			{new IdSpecificationImpl(2), ellipse, false},
-			{new PerimetrLessThanSpecificationImpl(100), ellipse, true},
-			{new PerimetrRangeSpecificationImpl(50, 70), ellipse, true},
-			{new SquareMoreThanSpecificationImpl(50), ellipse, true},
-			{new SquareRangeSpecificationImpl(80, 100), ellipse, false},
-		};
+
+	@DataProvider(name = "providerSpecification")
+	public Object[][] createdata() {
+		return new Object[][] { 
+				{ new IdSpecificationImpl(2), ellipse, false },
+				{ new PerimetrLessThanSpecificationImpl(100), ellipse, true },
+				{ new PerimetrRangeSpecificationImpl(50, 70), ellipse, true },
+				{ new SquareMoreThanSpecificationImpl(50), ellipse, true },
+				{ new SquareRangeSpecificationImpl(80, 100), ellipse, false }, };
 	}
-	
-	@Test (dataProvider = "providerSpecification")
-	public void testSpecify (Specification specification, Ellipse ellipse, boolean expected) {
+
+	@Test(dataProvider = "providerSpecification")
+	public void testSpecify(Specification specification, Ellipse ellipse, boolean expected) {
 		boolean actual = specification.specify(ellipse);
 		Assert.assertEquals(actual, expected);
 	}
-	
+
 	@AfterClass
-	public void close () {
+	public void close() {
 		ellipse = null;
 	}
 

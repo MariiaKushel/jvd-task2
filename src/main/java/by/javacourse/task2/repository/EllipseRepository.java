@@ -5,14 +5,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import by.javacourse.task2.entity.Ellipse;
 
 public class EllipseRepository {
-	
-	static Logger logger = LogManager.getLogger();
 
 	private static EllipseRepository instance;
 
@@ -46,38 +41,53 @@ public class EllipseRepository {
 	}
 
 	public Ellipse get(int index) {
-		return ellipses.get(index);
+		Ellipse ellipse = null;
+		if (containsIndex(index)) {
+			ellipse = ellipses.get(index);
+		}
+		return ellipse;
 	}
 
-	public Ellipse set(int index, Ellipse ellipse) {
-		return ellipses.set(index, ellipse);
+	public boolean set(int index, Ellipse ellipse) {
+		boolean flag = true;
+		if (containsIndex(index)) {
+			ellipses.set(index, ellipse);
+		} else {
+			flag = false;
+		}
+		return flag;
 	}
 
-	public int size () {
+	public List<Ellipse> getAll() {
+		return new ArrayList<Ellipse>(ellipses);
+	}
+
+	public int size() {
 		return ellipses.size();
 	}
-	
+
 	public boolean isEmpty() {
 		return ellipses.isEmpty();
 	}
-	
+
+	public boolean containsIndex(int index) {
+		return index >= 0 && index < ellipses.size();
+	}
+
 	public List<Ellipse> sort(Comparator<Ellipse> c) {
 		List<Ellipse> sorted;
-		sorted =  ellipses.stream()
-				.sorted(c)
-				.collect(Collectors.toList());		
-		return  sorted;
+		sorted = ellipses.stream().sorted(c).collect(Collectors.toList());
+		return sorted;
 	}
 
 	public List<Ellipse> query(Specification spesification) {
-		List<Ellipse> foundEllipses = ellipses.stream()
-				.filter(e -> spesification.specify(e))
+		List<Ellipse> foundEllipses = ellipses.stream().filter(e -> spesification.specify(e))
 				.collect(Collectors.toList());
 		return foundEllipses;
 	}
-	
+
 	@Override
-	public String toString () {
+	public String toString() {
 		return ellipses.toString();
 	}
 

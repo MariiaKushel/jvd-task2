@@ -134,7 +134,6 @@ public class EllipseRepositoryTest {
 	@Test (dataProvider = "providerQuery")
 	public void testQuery(Specification specification, List<Ellipse> expected) {
 		List<Ellipse> actual = repository.query(specification);
-		System.out.println("a" + actual);
 		Assert.assertEquals(actual, expected);
 	}
 	

@@ -17,20 +17,20 @@ public class EllipseFactory {
 
 	static Logger logger = LogManager.getLogger();
 
-	private static EllipseValidator validator = EllipseValidatorImpl.getInstance();
-
 	public static List<Ellipse> createEllipseListFromCoordinates(List<double[]> coordinates) {
+		
 		List<Ellipse> ellipses = new ArrayList<Ellipse>();
 		ellipses = coordinates.stream()
 				.map(arr -> createEllipse(arr))
-				.filter(o -> o != null)
-				.peek(o -> logger.info("ellipse to collect " + o))
+				.filter(e -> e != null)
+				.peek(e -> logger.info("ellipse to collect " + e))
 				.collect(Collectors.toList());
 
 		return ellipses;
 	}
 
 	public static List<Ellipse> createEllipseListFromPoints(List<Point[]> points) {
+		
 		List<Ellipse> ellipses = new ArrayList<Ellipse>();
 		ellipses = points.stream()
 				.peek(arr -> logger.info ((arr.length != EllipseValidator.NUMBER_OF_POINTS) ? 
@@ -38,8 +38,8 @@ public class EllipseFactory {
 										"Number of points is correct" + Arrays.toString(arr)))
 				.filter(arr -> arr.length == EllipseValidator.NUMBER_OF_POINTS)
 				.map(arr -> createEllipse(arr[0], arr[1]))
-				.filter(o -> o != null)
-				.peek(o -> logger.info("ellipse to collect " + o))
+				.filter(e -> e != null)
+				.peek(e -> logger.info("ellipse to collect " + e))
 				.collect(Collectors.toList());
 		
 		return ellipses;
@@ -64,6 +64,7 @@ public class EllipseFactory {
 	}
 
 	public static Ellipse createEllipse(double aX, double aY, double bX, double bY) {
+		
 		Point pointA = new Point(aX, aY);
 		Point pointB = new Point(bX, bY);
 
@@ -71,7 +72,8 @@ public class EllipseFactory {
 	}
 
 	public static Ellipse createEllipse(Point a, Point b) {
-
+		
+		EllipseValidator validator = EllipseValidatorImpl.getInstance();
 		Ellipse newEllipse = null;
 
 		if (validator.canEllipseExist(a, b)) {

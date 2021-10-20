@@ -20,16 +20,16 @@ public class EllipseWarehouse {
 		return instance;
 	}
 
-	public EllipseParameters putParameters(long ellipseId, EllipseParameters param) {
-		return warehouse.put(ellipseId, param);
+	public boolean putParameters(long ellipseId, EllipseParameters param) {
+		return warehouse.put(ellipseId, param) != null;
 	}
 
 	public EllipseParameters getParameters(long ellipseId) {
 		return warehouse.get(ellipseId);
 	}
 
-	public void putAllParameters(Map<Long, EllipseParameters> newEllipseMap) {
-		warehouse.putAll(newEllipseMap);
+	public Map<Long, EllipseParameters> getWarehouse (){
+		return new HashMap<Long, EllipseParameters> (warehouse);
 	}
 	
 	public boolean containsId (long ellipseId) {

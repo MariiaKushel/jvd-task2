@@ -7,19 +7,17 @@ import by.javacourse.task2.service.impl.EllipseServiceImpl;
 
 public class PerimetrLessThanSpecificationImpl implements Specification {
 
-	private EllipseService service = new EllipseServiceImpl();
-	
-	private double maxPerimetr;
+	private double maxPerimeter;
 
 	public PerimetrLessThanSpecificationImpl(double maxPerimetr) {
-		this.maxPerimetr = maxPerimetr;
+		this.maxPerimeter = maxPerimetr;
 	}
 
 	@Override
 	public boolean specify(Ellipse ellipse) {
-		
-		double perimetr = service.findPerimeter(ellipse);
-		return perimetr <= maxPerimetr;
+		EllipseService service = new EllipseServiceImpl();
+		double perimeter = service.findPerimeter(ellipse);
+		return Double.compare(perimeter, maxPerimeter) <= 0;
 	}
 
 }

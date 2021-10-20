@@ -7,8 +7,6 @@ import by.javacourse.task2.service.impl.EllipseServiceImpl;
 
 public class PerimetrRangeSpecificationImpl implements Specification {
 
-	private EllipseService service = new EllipseServiceImpl();
-	
 	private double perimetrFrom;
 	private double perimetrTo;
 
@@ -19,10 +17,9 @@ public class PerimetrRangeSpecificationImpl implements Specification {
 
 	@Override
 	public boolean specify(Ellipse ellipse) {
-		
-		double perimetr = service.findPerimeter(ellipse);
-		
-		return perimetr >= perimetrFrom && perimetr <= perimetrTo;
+		EllipseService service = new EllipseServiceImpl();
+		double perimeter = service.findPerimeter(ellipse);
+		return Double.compare(perimeter, perimetrFrom) >= 0 && Double.compare(perimeter, perimetrTo) <= 0;
 	}
 
 }

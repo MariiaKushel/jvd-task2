@@ -7,8 +7,6 @@ import by.javacourse.task2.service.impl.EllipseServiceImpl;
 
 public class SquareMoreThanSpecificationImpl implements Specification {
 
-	private EllipseService service = new EllipseServiceImpl();
-
 	private double minSquare;
 
 	public SquareMoreThanSpecificationImpl(double minSquare) {
@@ -17,10 +15,9 @@ public class SquareMoreThanSpecificationImpl implements Specification {
 
 	@Override
 	public boolean specify(Ellipse ellipse) {
-
+		EllipseService service = new EllipseServiceImpl();
 		double square = service.findSquare(ellipse);
-
-		return square >= minSquare;
+		return Double.compare(square, minSquare) >= 0;
 	}
 
 }
