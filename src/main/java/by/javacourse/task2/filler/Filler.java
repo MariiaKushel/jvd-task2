@@ -4,8 +4,10 @@ import java.util.List;
 
 import by.javacourse.task2.entity.Ellipse;
 
-public interface RepositoryFiller {
+public interface Filler {
 	
-	void fill (List <Ellipse> ellipses);
+	void fillAll(List<Ellipse> ellipses);
+
+	void fillOne(Ellipse ellipse);
 
 }

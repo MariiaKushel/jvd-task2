@@ -17,7 +17,7 @@ public class SquareMoreThanSpecificationImpl implements Specification {
 	public boolean specify(Ellipse ellipse) {
 		EllipseService service = new EllipseServiceImpl();
 		double square = service.findSquare(ellipse);
-		return Double.compare(square, minSquare) >= 0;
+		return square > minSquare;
 	}
 
 }

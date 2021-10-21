@@ -12,14 +12,14 @@ import org.testng.annotations.Test;
 
 import by.javacourse.task2.entity.Ellipse;
 import by.javacourse.task2.entity.Point;
-import by.javacourse.task2.filler.WarehouseFiller;
+import by.javacourse.task2.filler.Filler;
 import by.javacourse.task2.filler.impl.WarehouseFillerImpl;
 import by.javacourse.task2.warehouse.EllipseParameters;
 import by.javacourse.task2.warehouse.EllipseWarehouse;
 
 public class WarehouseFillerTest {
 
-	private WarehouseFiller warehouseFiller;
+	private Filler warehouseFiller;
 
 	@BeforeMethod
 	public void initialize() {
@@ -34,7 +34,7 @@ public class WarehouseFillerTest {
 		ellipses.add(new Ellipse(new Point(1, 4), new Point(3, 9)));
 		ellipses.add(new Ellipse(new Point(1, 6), new Point(7, 10)));
 
-		warehouseFiller.fill(ellipses);
+		warehouseFiller.fillAll(ellipses);
 
 		EllipseWarehouse warehouse = EllipseWarehouse.getInstance();
 		Map<Long, EllipseParameters> actual = warehouse.getWarehouse();
@@ -43,8 +43,23 @@ public class WarehouseFillerTest {
 		expected.put(0L, new EllipseParameters(25.132741228718345, 19.42182748581223));
 		expected.put(1L, new EllipseParameters(31.41592653589793, 23.094815163370246));
 		expected.put(2L, new EllipseParameters(75.39822368615503, 31.759289474462015));
-		
+
 		Assert.assertEqualsDeep(actual, expected);
+	}
+
+	@Test
+	public void testOne() {
+
+		Ellipse ellipses = new Ellipse(new Point(1, 2), new Point(5, 4));
+
+		warehouseFiller.fillOne(ellipses);
+
+		EllipseWarehouse warehouse = EllipseWarehouse.getInstance();
+		
+		EllipseParameters actual = warehouse.getParameters(ellipses.getEllipseId());
+		EllipseParameters expected = new EllipseParameters(25.132741228718345, 19.42182748581223);
+
+		Assert.assertEquals(actual, expected);
 	}
 
 	@AfterMethod

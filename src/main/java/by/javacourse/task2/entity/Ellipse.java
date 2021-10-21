@@ -115,5 +115,4 @@ public class Ellipse implements Observable{
 		observer.updateParamrters(event);
 	}
 
-	
 }

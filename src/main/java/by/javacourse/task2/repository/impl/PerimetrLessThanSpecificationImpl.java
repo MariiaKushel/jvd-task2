@@ -17,7 +17,7 @@ public class PerimetrLessThanSpecificationImpl implements Specification {
 	public boolean specify(Ellipse ellipse) {
 		EllipseService service = new EllipseServiceImpl();
 		double perimeter = service.findPerimeter(ellipse);
-		return Double.compare(perimeter, maxPerimeter) <= 0;
+		return perimeter < maxPerimeter;
 	}
 
 }

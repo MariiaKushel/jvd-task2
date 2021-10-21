@@ -51,7 +51,7 @@ public class EllipseFactoryTest {
 	@Test(dataProvider = "providerListCoordinates")
 	public void testCreateEllipseListFromCoordinates(List<double[]> coordinates, List<Ellipse> expected) {
 		List<Ellipse> actual = EllipseFactory.createEllipseListFromCoordinates(coordinates);
-		boolean flag = isEllipseListEqualsByTwoPoints(actual, expected);
+		boolean flag = equalsByTwoPointsList(actual, expected);
 		Assert.assertTrue(flag);
 	}
 
@@ -88,7 +88,7 @@ public class EllipseFactoryTest {
 	@Test(dataProvider = "providerListPoints")
 	public void testCreateEllipseListFromPoints(List<Point[]> points, List<Ellipse> expected) {
 		List<Ellipse> actual = EllipseFactory.createEllipseListFromPoints(points);
-		boolean flag = isEllipseListEqualsByTwoPoints(actual, expected);
+		boolean flag = equalsByTwoPointsList(actual, expected);
 		Assert.assertTrue(flag);
 	}
 
@@ -103,7 +103,7 @@ public class EllipseFactoryTest {
 	@Test(dataProvider = "providerCoordinatsArrayPositive")
 	public void testCreateEllipse(Ellipse expected, double... coordinates) {
 		Ellipse actual = EllipseFactory.createEllipse(coordinates);
-		boolean flag = isEllipsesEqualsByTwoPoints(actual, expected);
+		boolean flag = equalsByTwoPoints(actual, expected);
 		Assert.assertTrue(flag);
 	}
 
@@ -135,7 +135,7 @@ public class EllipseFactoryTest {
 	@Test(dataProvider = "providerCoordinatsPositive")
 	public void testCreateEllipse(Ellipse expected, double aX, double aY, double bX, double bY) {
 		Ellipse actual = EllipseFactory.createEllipse(aX, aY, bX, bY);
-		boolean flag = isEllipsesEqualsByTwoPoints(actual, expected);
+		boolean flag = equalsByTwoPoints(actual, expected);
 		Assert.assertTrue(flag);
 	}
 
@@ -164,7 +164,7 @@ public class EllipseFactoryTest {
 	@Test(dataProvider = "providerPointsPositive")
 	public void testCreateEllipse(Ellipse expected, Point a, Point b) {
 		Ellipse actual = EllipseFactory.createEllipse(a, b);
-		boolean flag = isEllipsesEqualsByTwoPoints(actual, expected);
+		boolean flag = equalsByTwoPoints(actual, expected);
 		Assert.assertTrue(flag);
 	}
 
@@ -183,17 +183,17 @@ public class EllipseFactoryTest {
 		Assert.assertNull(actual);
 	}
 
-	private boolean isEllipsesEqualsByTwoPoints(Ellipse e1, Ellipse e2) {
+	private boolean equalsByTwoPoints(Ellipse e1, Ellipse e2) {
 		return e1.getPointA().equals(e2.getPointA()) && e1.getPointB().equals(e2.getPointB());
 	}
 
-	private boolean isEllipseListEqualsByTwoPoints(List<Ellipse> list1, List<Ellipse> list2) {
+	private boolean equalsByTwoPointsList(List<Ellipse> list1, List<Ellipse> list2) {
 		boolean flag = false;
 		if (list1 != null && list1.size() == list2.size()) {
 			int i = 0;
 			flag = true;
 			while (i < list1.size() && flag) {
-				flag = isEllipsesEqualsByTwoPoints(list1.get(i), list2.get(i));
+				flag = equalsByTwoPoints(list1.get(i), list2.get(i));
 				i++;
 			}
 		}

@@ -19,7 +19,7 @@ public class SquareRangeSpecificationImpl implements Specification {
 	public boolean specify(Ellipse ellipse) {
 		EllipseService service = new EllipseServiceImpl();
 		double square = service.findSquare(ellipse);
-		return Double.compare(square, squareFrom) >= 0 && Double.compare(square, squareTo) <= 0;
+		return Double.compare(square, squareFrom) > 0 && Double.compare(square, squareTo) < 0;
 	}
 
 }

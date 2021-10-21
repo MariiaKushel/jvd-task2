@@ -19,7 +19,7 @@ public class PerimetrRangeSpecificationImpl implements Specification {
 	public boolean specify(Ellipse ellipse) {
 		EllipseService service = new EllipseServiceImpl();
 		double perimeter = service.findPerimeter(ellipse);
-		return Double.compare(perimeter, perimetrFrom) >= 0 && Double.compare(perimeter, perimetrTo) <= 0;
+		return perimeter > perimetrFrom && perimeter < perimetrTo;
 	}
 
 }

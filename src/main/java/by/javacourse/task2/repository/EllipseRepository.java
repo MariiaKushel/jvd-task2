@@ -58,7 +58,7 @@ public class EllipseRepository {
 		return flag;
 	}
 
-	public List<Ellipse> getAll() {
+	public List<Ellipse> getRepository() {
 		return new ArrayList<Ellipse>(ellipses);
 	}
 
