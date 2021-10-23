@@ -44,7 +44,7 @@ public class Ellipse implements Observable{
 	public long getEllipseId() {
 		return ellipseId;
 	}
-
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

@@ -1,5 +1,6 @@
 package by.javacourse.task2.warehouse;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ public class EllipseWarehouse {
 	}
 
 	public Map<Long, EllipseParameters> getWarehouse (){
-		return new HashMap<Long, EllipseParameters> (warehouse);
+		return Collections.unmodifiableMap(warehouse);
 	}
 	
 	public boolean containsId (long ellipseId) {

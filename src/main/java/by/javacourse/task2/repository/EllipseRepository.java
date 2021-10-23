@@ -1,6 +1,7 @@
 package by.javacourse.task2.repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -59,7 +60,7 @@ public class EllipseRepository {
 	}
 
 	public List<Ellipse> getRepository() {
-		return new ArrayList<Ellipse>(ellipses);
+		return Collections.unmodifiableList(ellipses);
 	}
 
 	public int size() {
