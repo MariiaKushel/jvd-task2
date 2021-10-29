@@ -31,7 +31,7 @@ public class StringParserImpl implements StringParser {
 				.collect(Collectors.toList());
 		
 
-		/* Вариант без использовани метода парсинга 1 стороки в масcив double
+		/* Other variant without using method parseStringToCoordinates
 		 * 
 		 * coordinateList = stringsAsCoordinates.stream() 
 		 * 				.map(s -> s.split(COORDINATE_SPLIT_REGEX)) 
